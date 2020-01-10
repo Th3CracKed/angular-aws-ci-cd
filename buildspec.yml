@@ -23,13 +23,8 @@ phases:
       - npm run test:ci
   post_build:
      commands:
-      - echo "$CODEBUILD_BUILD_SUCCEEDING"
-      # if build succeeds copy the dist folder into the s3 bucket
-      - |
-          if [ "$CODEBUILD_BUILD_SUCCEEDING" = "1" ]; then
-                - "[ -d ./dist ] && echo 'dist directory found' &&  aws s3 sync ./dist s3://codebuild-us-east-angular-front-dev --acl=public-read --delete --exclude '.git/*'"
-                - echo Build completed on `date`
-          fi
+      - "[ -d ./dist ] && echo 'dist directory found' &&  aws s3 sync ./dist s3://codebuild-us-east-angular-front-dev --acl=public-read --delete --exclude '.git/*'"
+      - echo Build completed on `date`
 reports: #New
   SurefireReports: # CodeBuild will create a report group called "SurefireReports".
     files: #Store all of the files
