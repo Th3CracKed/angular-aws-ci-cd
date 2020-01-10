@@ -26,8 +26,10 @@ phases:
       - if [ $CODEBUILD_BUILD_SUCCEEDING = 0 ]; then echo Build failed; exit 1; fi
       - "[ -d ./dist ] && echo 'dist directory found' &&  aws s3 sync ./dist s3://codebuild-us-east-angular-front-dev --acl=public-read --delete --exclude '.git/*'"
       - echo Build completed on `date`
+      - echo $PWD
+      - ls
 reports: #New
-  SurefireReports: # CodeBuild will create a report group called "SurefireReports".
+  CoverageReports: # CodeBuild will create a report group called "CoverageReports".
     files: #Store all of the files
       - '**/*'
     base-directory: '/coverage' # Location of the reports 
