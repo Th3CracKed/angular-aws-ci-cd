@@ -21,13 +21,11 @@ module.exports = function (config) {
       fixWebpackSourcePaths: true
     },
     customLaunchers: {
-      ChromeHeadless: {
-        base: 'Chrome',
+      ChromeHeadlessCI: {
+        base: 'ChromeHeadless',
         flags: [
           '--no-sandbox',
-          '--headless',
-          '--disable-gpu',
-          '--remote-debugging-port=9222'
+          '--disable-gpu'
         ]
       }
     },
