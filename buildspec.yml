@@ -26,10 +26,6 @@ phases:
       - if [ $CODEBUILD_BUILD_SUCCEEDING = 0 ]; then echo Build failed; exit 1; fi
       - "[ -d ./dist ] && echo 'dist directory found' &&  aws s3 sync ./dist s3://codebuild-us-east-angular-front-dev --acl=public-read --delete --exclude '.git/*'"
       - echo Build completed on `date`
-      - ls
-      - cd coverage
-      - ls
-      - cd ..
 reports: #New
   CoverageReports: # CodeBuild will create a report group called "CoverageReports".
     files: #Store all of the files
