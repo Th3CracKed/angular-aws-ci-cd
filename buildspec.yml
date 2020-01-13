@@ -24,8 +24,8 @@ phases:
   post_build:
      commands:
       # - if [ $CODEBUILD_BUILD_SUCCEEDING = "0" ]; then echo Build failed; exit 1; fi
-      - "[ -d ./coverage ] && echo 'coverage directory found' && aws s3 sync ./coverage s3://codebuild-us-east-angular-front-dev/coverage --acl=public-read --delete --exclude '.git/*'"
-      - "[ -d ./dist ] && echo 'dist directory found' &&  aws s3 cp ./dist s3://codebuild-us-east-angular-front-dev --acl=public-read --delete --exclude '.git/*'"
+      - "[ -d ./coverage ] && echo 'coverage directory found' && aws s3 sync ./coverage s3://codebuild-us-east-angular-front-dev/coverage --acl=public-read --exclude '.git/*'"
+      - "[ -d ./dist ] && echo 'dist directory found' &&  aws s3 sync ./dist s3://codebuild-us-east-angular-front-dev --acl=public-read --exclude '.coverage/*' '.git/*'"
       - echo Build completed on `date`
 reports: #New
   CoverageReports: # CodeBuild will create a report group called "CoverageReports".
