@@ -36,5 +36,6 @@ artifacts:
   files:
       - 'dist/*'
       - 'coverage/*'
-  name: 'dist-${CODEBUILD_SOURCE_VERSION}'
+  base-directory: '.'
+  name: '${CODEBUILD_SOURCE_VERSION}'
   discard-paths: yes
