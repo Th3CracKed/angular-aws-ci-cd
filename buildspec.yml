@@ -33,13 +33,12 @@ reports: #New
       - '**/*'
     base-directory: 'coverage' # Location of the reports 
 artifacts:
+  files:
+      - '**/*'
+  base-directory: 'dist*'
+  name: 'dist-${CODEBUILD_SOURCE_VERSION}'
   secondary-artifacts:
     artifact1:
-      base-directory: 'dist'
-      files:
-        - '**/*'
-      name: 'dist-${CODEBUILD_SOURCE_VERSION}'
-    artifact2:
       base-directory: 'coverage'
       files:
         - '**/*'
