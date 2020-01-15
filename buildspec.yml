@@ -38,7 +38,7 @@ artifacts:
   base-directory: 'dist*'
   name: 'dist-${CODEBUILD_SOURCE_VERSION}'
   secondary-artifacts:
-    artifact1:
+    test_artifact:
       base-directory: 'coverage'
       files:
         - '**/*'
