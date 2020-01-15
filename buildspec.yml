@@ -36,11 +36,9 @@ artifacts:
   files:
       - '**/*'
   base-directory: 'dist*'
-  name: 'dist-${CODEBUILD_SOURCE_VERSION}'
   secondary-artifacts:
     test_artifact:
       base-directory: 'coverage'
       files:
         - '**/*'
-      name: 'test-${CODEBUILD_SOURCE_VERSION}'
   discard-paths: yes
