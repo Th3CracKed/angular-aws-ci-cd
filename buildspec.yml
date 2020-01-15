@@ -36,7 +36,7 @@ artifacts:
   files:
       - 'dist/**/*'
       - 'coverage/**/*'
-  base-directory: 'dist*'
+  base-directory: '.'
   secondary-artifacts:
     test_artifact:
       base-directory: 'coverage'
