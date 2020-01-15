@@ -34,11 +34,11 @@ reports: #New
     base-directory: 'coverage' # Location of the reports 
 artifacts:
   files:
-      - '**/*'
+      - 'dist/**/*'
+      - 'coverage/**/*'
   base-directory: 'dist*'
   secondary-artifacts:
     test_artifact:
       base-directory: 'coverage'
       files:
         - '**/*'
-  discard-paths: yes
