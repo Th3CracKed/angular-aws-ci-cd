@@ -3,9 +3,9 @@ const scanner = require("sonarqube-scanner");
 scanner(
   {
     // this example uses local instance of SQ
-    serverUrl: "http://localhost:9000/",
+    serverUrl: "http://100.24.15.163",
     options: {
-      "sonar.login":"5a6d447643059768642fe0194c863023a40150d2", // TODO Export to env file
+      "sonar.login":"646fbf98fb9db34f2536aa8fb73e55ca5c5ea0c5", // TODO Export to env file
       "sonar.projectName": "angular-aws-ci-cd",
       "sonar.projectKey": "angular-aws-ci-cd",
       "sonar.projectVersion": "1.1.0",
