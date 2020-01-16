@@ -6,7 +6,7 @@ module.exports = function (config) {
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
-      require('karma-junit-reporter'),
+      require('karma-sonarqube-unit-reporter'),
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
@@ -16,11 +16,10 @@ module.exports = function (config) {
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-    junitReporter: {
-      outputDir: require('path').join(__dirname, '../coverage'), // results will be saved as $outputDir/$browserName.xml
-      suite: '', // suite will become the package name attribute in xml testsuite element
-      useBrowserName: true, // add browser name to report and classes names
-      xmlVersion: null // use '1' if reporting to be per SonarQube 6.2 XML format
+   sonarQubeUnitReporter: {
+      sonarQubeVersion: 'LATEST',
+      outputFile: '../coverage/report.xml',
+      useBrowserName: false
     },
     customLaunchers: {
       ChromeHeadlessCI: {
@@ -31,7 +30,7 @@ module.exports = function (config) {
         ]
       }
     },
-    reporters: ['progress', 'junit'],
+    reporters: ['progress', 'sonarqubeUnit'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
