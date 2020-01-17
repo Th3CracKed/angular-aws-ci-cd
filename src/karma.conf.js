@@ -18,7 +18,7 @@ module.exports = function (config) {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     junitReporter: {
-      outputDir: require('path').join(__dirname, '../coverage'), // results will be saved as $outputDir/$browserName.xml
+      outputDir: require('path').join(__dirname, '../coverage/aws'), // results will be saved as $outputDir/$browserName.xml
       suite: '', // suite will become the package name attribute in xml testsuite element
       useBrowserName: true, // add browser name to report and classes names
       xmlVersion: null // use '1' if reporting to be per SonarQube 6.2 XML format
