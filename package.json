@@ -9,7 +9,8 @@
     "test": "ng test",
     "test:ci": "ng test --no-watch --code-coverage --browsers=ChromeHeadlessCI",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "tslint:ci": "tslint -t json -o coverage/linter-report.json --project . --force"
   },
   "private": true,
   "dependencies": {
