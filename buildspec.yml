@@ -24,12 +24,12 @@ phases:
   post_build:
      commands:
       # - if [ $CODEBUILD_BUILD_SUCCEEDING = "0" ]; then echo Build failed; exit 1; fi
-      - npm run eslint:ci
       - "[ -d ./coverage ] && echo 'coverage directory found' && aws s3 sync ./coverage s3://codebuild-us-east-angular-front-dev/coverage --acl=public-read --exclude 'backups/*|'"
       - "aws s3 sync s3://codebuild-us-east-angular-front-dev/coverage/lcov-report/ s3://codebuild-us-east-angular-front-dev/coverage --acl=public-read --exclude 'backups/*|aws/*|sonarqube/*|linter/*|lcov.info' && aws s3 rm s3://codebuild-us-east-angular-front-dev/coverage/lcov-report/ --recursive"
       -  NOW=$(date +"%Y-%m-%d-%T")
       - "aws s3 cp s3://codebuild-us-east-angular-front-dev/coverage/ s3://codebuild-us-east-angular-front-dev/coverage/backups/$NOW --recursive --exclude 'backups'"
       - "[ -d ./dist ] && echo 'dist directory found' &&  aws s3 sync ./dist s3://codebuild-us-east-angular-front-dev --acl=public-read --exclude '.git/*|.coverage/*'"
+      - npm run eslint:ci
       - node sonarqube-scan.js
       - echo Build completed on `date`
 reports: #New
