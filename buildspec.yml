@@ -24,11 +24,11 @@ phases:
   post_build:
      commands:
       # - if [ $CODEBUILD_BUILD_SUCCEEDING = "0" ]; then echo Build failed; exit 1; fi
-      - "[ -d ./coverage ] && echo 'coverage directory found' && aws s3 sync ./coverage s3://codebuild-us-east-angular-front-dev/front/coverage --acl=public-read --exclude 'backups/*|'"
-      - "aws s3 sync s3://codebuild-us-east-angular-front-dev/front/coverage/lcov-report/ s3://codebuild-us-east-angular-front-dev/front/coverage --acl=public-read --exclude 'backups/*|aws/*|sonarqube/*|linter/*|lcov.info' && aws s3 rm s3://codebuild-us-east-angular-front-dev/front/coverage/lcov-report/ --recursive"
+      - "[ -d ./coverage ] && echo 'coverage directory found' && aws s3 sync ./coverage s3://codebuild-us-east-angular-front-dev/coverage/front --acl=public-read --exclude 'backups/*|'"
+      - "aws s3 sync s3://codebuild-us-east-angular-front-dev/coverage/front/lcov-report/ s3://codebuild-us-east-angular-front-dev/coverage/front --acl=public-read --exclude 'backups/*|aws/*|sonarqube/*|linter/*|lcov.info' && aws s3 rm s3://codebuild-us-east-angular-front-dev/coverage/front/lcov-report/ --recursive"
       -  NOW=$(date +"%Y-%m-%d-%T")
-      - "aws s3 cp s3://codebuild-us-east-angular-front-dev/front/coverage/ s3://codebuild-us-east-angular-front-dev/front/coverage/backups/$NOW --recursive --exclude 'backups'"
-      - "[ -d ./dist ] && echo 'dist directory found' &&  aws s3 sync ./dist s3://codebuild-us-east-angular-front-dev --acl=public-read --exclude '.git/*|.front/coverage/*'"
+      - "aws s3 cp s3://codebuild-us-east-angular-front-dev/coverage/front/ s3://codebuild-us-east-angular-front-dev/coverage/front/backups/$NOW --recursive --exclude 'backups'"
+      - "[ -d ./dist ] && echo 'dist directory found' &&  aws s3 sync ./dist s3://codebuild-us-east-angular-front-dev --acl=public-read --exclude '.git/*|.coverage/front/*'"
       - npm run tslint:ci
       - node sonarqube-scan.js
       - echo Build completed on `date`
@@ -36,9 +36,9 @@ reports: #New
   CoverageReports: # CodeBuild will create a report group called "CoverageReports".
     files: #Store all of the files
       - '**/*'
-    base-directory: 'front/coverage/aws' # Location of the reports 
+    base-directory: 'coverage/front/aws' # Location of the reports 
 artifacts:
   files:
       - 'dist/**/*'
-      - 'front/coverage/**/*'
+      - 'coverage/front/**/*'
   base-directory: '.'
