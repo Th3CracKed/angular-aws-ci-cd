@@ -27,7 +27,7 @@ phases:
       - "[ -d ./coverage ] && echo 'coverage directory found' && aws s3 sync ./coverage s3://codebuild-us-east-angular-front-dev/coverage/front --acl=public-read --exclude 'backups/*|'"
       - "aws s3 sync s3://codebuild-us-east-angular-front-dev/coverage/front/lcov-report/ s3://codebuild-us-east-angular-front-dev/coverage/front --acl=public-read --exclude 'backups/*|aws/*|sonarqube/*|linter/*|lcov.info' && aws s3 rm s3://codebuild-us-east-angular-front-dev/coverage/front/lcov-report/ --recursive"
       -  NOW=$(date +"%Y-%m-%d-%T")
-      - "aws s3 cp s3://codebuild-us-east-angular-front-dev/coverage/front/ s3://codebuild-us-east-angular-front-dev/coverage/front/backups/$NOW --recursive --exclude 'backups'"
+      - "aws s3 cp s3://codebuild-us-east-angular-front-dev/coverage/front/ s3://codebuild-us-east-angular-front-dev/coverage/front/backups/$NOW --recursive --exclude 'backups/*'"
       - "[ -d ./dist ] && echo 'dist directory found' &&  aws s3 sync ./dist s3://codebuild-us-east-angular-front-dev --acl=public-read --exclude '.git/*|.coverage/front/*'"
       - npm run tslint:ci
       - node sonarqube-scan.js
